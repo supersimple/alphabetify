@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    alphabetify (0.0.2)
+    alphabetify (1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -26,3 +26,6 @@ PLATFORMS
 DEPENDENCIES
   alphabetify!
   rspec
+
+BUNDLED WITH
+   1.10.6
