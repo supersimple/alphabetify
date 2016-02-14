@@ -19,7 +19,8 @@ class Alphabetify
   ###############################################################################################################  
   HASH_CHARS = ('A'..'Z').to_a
   
-  def self.generate_hash(str)
+  def self.generate_hash
+    str = get_last_hash
     complete = false
     new_hash = ''
     str.chars.reverse.each do |ch|
@@ -38,10 +39,32 @@ class Alphabetify
     if !complete
       new_hash.reverse! << HASH_CHARS.first
     end
-    new_hash.reverse
+    result = new_hash.reverse
+    set_last_hash(result)
+    result
+  end
+  
+  #This method can be used (preferably only once, to set the initial hash)
+  def self.seed_hash(seed)
+    #Check seed against HASH_CHARS. Throw error if any characters arent allowed
+    raise ArgumentError.new("The seed cannot be empty.") if seed.to_s.empty? 
+    unless seed.to_s.each_char.detect{|c| !HASH_CHARS.include?(c) }
+      set_last_hash(seed)
+      get_last_hash
+    else
+      raise ArgumentError.new("The seed can only contain characters in #{HASH_CHARS.join}.")
+    end
   end
   
   private
+  
+  def self.get_last_hash
+    File.read( File.join( __dir__, 'last-hash.txt' )  )
+  end
+  
+  def self.set_last_hash(new_value)
+    File.open( File.join( __dir__, 'last-hash.txt' ), 'w+') {|f| f.write(new_value) }
+  end
   
   def self.get_next_char(char)
     unless char == HASH_CHARS.last
@@ -61,3 +84,4 @@ class Alphabetify
   end
   
 end
+ 

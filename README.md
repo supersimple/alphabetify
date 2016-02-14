@@ -6,8 +6,6 @@ Taking an existing alphabetic hash (of any length), will return the next hash in
 eg. 'ZZZZ' -> 'AAAAA' 
 eg. 'AAAZ' -> 'AABA'
 
-Pass in your latest alphabetical hash to find the next available hash.
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -24,7 +22,9 @@ Or install it yourself as:
 
 ## Usage
 
-Alphabetify.generate_hash('THELASTHASHUSED')
+Alphabetify.generate_hash will return next available hash
+
+Alphabetify.seed_hash(str) will set the initial hash value. By default, the hash begins at 'AAAA'
 
 ## Contributing
 
