@@ -68,7 +68,8 @@ class Alphabetify
   
   def self.get_next_char(char)
     unless char == HASH_CHARS.last
-      return [char.next,false]
+      i = (HASH_CHARS.find_index(char)) +1
+      return [HASH_CHARS[i],false]
     else
       return [HASH_CHARS.first,true]
     end     
@@ -84,4 +85,3 @@ class Alphabetify
   end
   
 end
- 
